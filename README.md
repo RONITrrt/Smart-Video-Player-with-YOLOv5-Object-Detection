@@ -124,3 +124,4 @@ Pull requests are welcome! Improve detection logic, add GUI features, or integra
 📄 **Licensed under the MIT License**
 
 Built using 💻 Python, 🧠 YOLOv5, and 🧪 fault-tolerant design principles.
+<img width="1812" height="1029" alt="image" src="https://github.com/user-attachments/assets/71bac811-db0b-4a9a-8006-036c7d9e7038" />
