@@ -1,91 +1,126 @@
-Smart Video Player with YOLOv5 Object Detection
-This project is a smart video monitoring system that uses YOLOv5 for real-time object detection. It includes:
+# 🎯 Smart Video Player with YOLOv5 Object Detection
 
-Automatic retry mechanism for failed video streams.
+A real-time object detection system using **YOLOv5** with smart recovery features, timestamped logs, and failure simulation support.
 
-Frame-by-frame detection with logs.
+---
 
-Frame failure simulation for testing robustness.
+## 🔍 YOLOv5 Model Setup
 
-Frame counter with overlay on video.
+```python
+from ultralytics import YOLO
 
-Timestamped logging of events and detections.
+model = YOLO('yolov5s.pt')
+```
 
-🛠️ Features
-✅ Real-time object detection using YOLOv5s
-✅ Automatic reconnection (up to 3 times) if stream fails
-✅ Detection logs with timestamps and elapsed time
-✅ Frame number overlay on video feed
-✅ Simulated failure at specific frame for robustness testing
-✅ User can quit at any time with ctrl+c
+- 🧠 **Trained on**: COCO dataset  
+- 🎯 **Detects**: 80 object classes  
+- ⚡ **Fast and lightweight** (ideal for real-time)
 
-📁 Project Structure
-├── main.py             # Main video processing and YOLO detection
-├── utils.py            # Helper for drawing boxes and logging detections
-├── requirements.txt    # All required dependencies
-├── yolov5su.pt          # YOLOv5s model (auto-downloaded if not present)
-└── logs/
-    ├── detections.log      # Frame-by-frame events and detections
-🔧 Requirements
-You can install all dependencies using:
+---
+
+## ⚙️ Configuration (`main.py`)
+
+```python
+VIDEO_SOURCE = "video1.mp4"         # Path to your video file or stream
+RECONNECT_TRIES = 3                 # Max retry attempts on failure
+ENABLE_FAILURE_SIMULATION = True    # Toggle frame read failure simulation
+simulate_failure_at = 100           # Frame number to simulate failure
+```
+
+---
+
+## ▶️ How to Run
+
+### 1. 📦 Install dependencies
+
+```bash
 pip install -r requirements.txt
-requirements.txt includes:
+```
+
+### 2. 🎥 Place your video file
+
+Put `video1.mp4` in the root directory.
+
+### 3. 🚀 Run the detection script
+
+```bash
+python main.py
+```
+
+Press `q` to quit. Logs will be saved in the `logs/` directory.
+
+---
+
+## 📋 Requirements
+
+Dependencies listed in `requirements.txt`:
+
+```text
 torch
 torchvision
 ultralytics
 opencv-python
 numpy
-▶️ How to Run
-Place your video file (e.g., video1.mp4) in the same directory.
+```
 
-Run the script:
-python main.py
-Watch the console and video window:
-Press q to quit
+Install them using:
 
-Logs will be saved in logs/
+```bash
+pip install -r requirements.txt
+```
 
-🔍 YOLOv5 Model
-This project uses the ultralytics version of YOLOv5:
+---
 
-from ultralytics import YOLO
-model = YOLO('yolov5s.pt')
-The model will be automatically downloaded the first time you run the script if not already present.
+## 🧪 Failure Simulation
 
-⚙️ Configuration
-Inside main.py:
-VIDEO_SOURCE = "video1.mp4"       # Path to your video file or stream
-RECONNECT_TRIES = 3               # Max retry attempts on failure
-ENABLE_FAILURE_SIMULATION = True  # Toggle simulated frame failure
-simulate_failure_at = 100         # Frame at which to simulate failure
-🧪 Failure Simulation
-To test the robustness of the video stream, set:
+To test system resilience, enable in `main.py`:
+
+```python
 ENABLE_FAILURE_SIMULATION = True
 simulate_failure_at = 100
-At frame 100, the video will simulate a failure. The app will then try to reconnect up to 3 times.
+```
 
-📝 Logs
-logs/detections.log: Logs frame-by-frame events (stream opened, failures, detections) with timestamp and elapsed time.
+Triggers a simulated failure at frame 100 and auto-reconnects to validate fault tolerance.
 
-logs/detection_log.txt: Logs all detected objects (from utils.py) with timestamp and confidence.
+---
 
-📌 Example Console Output
+## 📝 Logging System
+
+- `logs/detections.log`: Logs stream status, reconnections, frame reads, and detections with timestamps and elapsed time.
+- `logs/detection_log.txt`: Logs object detections with confidence and labels from `utils.py`.
+
+---
+
+## 📊 Console Output Example
+
+```log
 [INFO] Attempting to open video source... (Try 1/3)
 [INFO] Stream started successfully.
 [INFO] Processing frame 1
-[INFO] Processing frame 2
 ...
 [SIMULATION] Simulating frame read failure at frame 100.
 [WARNING] Frame read failed. Attempting to reconnect...
 [INFO] Stream started successfully.
 [INFO] Processing frame 101
 ...
-#sample_output 
-In sample_output file there are videos and sample of detection that thr model made
+```
 
-🎥 Video Output Preview
-Bounding boxes are drawn for detected objects.
+---
 
-Frame number is displayed at the top-left corner.
+## 🎬 Video Output Preview
 
-A red "Reconnecting..." overlay appears if stream fails temporarily.
+- ✅ Objects enclosed in bounding boxes with labels and confidence
+- 🔢 Frame count shown on top-left
+- 🔁 "Reconnecting..." overlay during stream failure
+
+Preview available in the `sample_output/` folder.
+
+---
+
+## 💡 Contributions & License
+
+Pull requests are welcome! Improve detection logic, add GUI features, or integrate alert systems.
+
+📄 **Licensed under the MIT License**
+
+Built using 💻 Python, 🧠 YOLOv5, and 🧪 fault-tolerant design principles.
