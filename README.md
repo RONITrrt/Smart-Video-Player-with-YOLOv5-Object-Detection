@@ -1,6 +1,6 @@
 # 🎯 Smart Video Player with YOLOv5 Object Detection
 
-A real-time object detection system using **YOLOv5** with smart recovery features, timestamped logs, and failure simulation support.
+The Smart Video Player with YOLOv5 Object Detection is an intelligent, real-time video analysis system designed to enhance surveillance, monitoring, and video stream resilience. Leveraging the powerful YOLOv5 deep learning model, this project performs fast and accurate object detection across video frames, supporting 80 object classes trained on the COCO dataset. What sets it apart is its built-in fault tolerance—when a stream fails or frame reading encounters issues, the system automatically retries connection attempts up to three times without manual intervention. It also features frame-by-frame logging with precise timestamps and overlaying of frame numbers on the video feed for detailed monitoring. To simulate robustness under stress, the script can deliberately trigger frame read failures at a predefined frame, testing the system’s recovery capability in controlled environments. The entire detection process is thoroughly logged, making this project ideal for developers, researchers, and engineers looking to integrate advanced, resilient AI-driven video processing into their applications.
 
 ---
 
@@ -125,3 +125,6 @@ Pull requests are welcome! Improve detection logic, add GUI features, or integra
 
 Built using 💻 Python, 🧠 YOLOv5, and 🧪 fault-tolerant design principles.
 <img width="1812" height="1029" alt="image" src="https://github.com/user-attachments/assets/71bac811-db0b-4a9a-8006-036c7d9e7038" />
+
+<img width="969" height="581" alt="image" src="https://github.com/user-attachments/assets/d0c2c537-7c9e-466c-83dd-438c03fd2e6a" />
+
