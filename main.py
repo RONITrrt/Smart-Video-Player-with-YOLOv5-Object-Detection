@@ -5,7 +5,7 @@ import time
 import os
 
 # === CONFIG ===
-VIDEO_SOURCE = "video.mp4"  # Replace with your IP stream or file path
+VIDEO_SOURCE = "video2.mp4"  # Replace with your IP stream or file path
 RECONNECT_TRIES = 3
 LOG_PATH = "logs/detections.log"
 
